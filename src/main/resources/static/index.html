@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="myApp">
+<body>
+
+<div ng-controller="myCtrl">
+
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + lastName}} 坑到暴！！
+
+    1+2={{1+2 | number:2}}
+
+</div>
+<div ng-app="wang" ng-controller="myCtrl2">
+    赵 {{name11}}
+    <button ng-click="action()">
+        OK
+    </button>
+</div>
+<div>
+    <a href="/angular/tableDemo">>>>>表单演示<<<<</a><br/>
+    <a href="/angular/customValid">>>>>自定义验证<<<<</a>
+
+</div>
+<script src="./angular-1.4.6/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.firstName = "赵";
+        $scope.lastName = "雪松";
+    });
+    app.controller('myCtrl2', function ($scope) {
+        $scope.action = function () {
+            $scope.name11 = "坑";
+        }
+        $scope.name11 = "雪松";
+    })
+</script>
+
+</body>
+<!--<script type="javascript">-->
+<!--var app_wang = angular.module('wang', []);-->
+<!--app_wang.controller('myCtrl', function ($scope) {-->
+<!--$scope.name11 = "wang";-->
+<!--})-->
+
+<!--</script>-->
+<!--<div>-->
+<!--名字:<input type="text" ng-model="name">-->
+<!--<p draggable="true">Hello {{name}}</p>-->
+<!--<input type="text" value={{name}}>-->
+
+<!--<div ng-app="wang" ng-controller="myCtrl">-->
+<!--Wang {{name11}}-->
+<!--</div>-->
+
+<!--</div>-->
+<!--I can add:{{1+2}}-->
+<!--<script src="./angular-1.4.6/angular.min.js"></script>-->
+
+<!--</body>-->
+</html>

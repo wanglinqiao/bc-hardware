@@ -1,0 +1,58 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        maven { url "http://10.10.10.60:8081/nexus/content/groups/public" }
+        maven { url "http://repo.spring.io/libs-release" }
+        maven { url "http://repo.spring.io/libs-milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+group 'com.wlq'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: "eclipse"
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'bc-hardware'
+    version = '0.0.1.RELEASE'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "http://10.10.10.60:8081/nexus/content/groups/public" }
+    maven { url "http://repo.spring.io/libs-release" }
+    maven { url "http://repo.spring.io/libs-milestone" }
+    maven { url "http://repo.spring.io/snapshot" }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
+    }
+}
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
